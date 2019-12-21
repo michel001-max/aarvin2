@@ -1,0 +1,60 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "products": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "Product_id": {
+                        "type": "string","minLength": 1
+                    },
+                    "Style_number": {
+                        "type": "string","minLength": 1
+                    },
+                    "price": {
+                        "type": "string"
+                    },
+                    "sub": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "n_size": {
+                                    "type": "string"
+                                },
+                                "color": {
+                                    "type": "string"
+                                },
+                                "qty": {
+                                    "type": ["string","integer"],
+                                    "minLength": 1
+                                },
+                                "sku_id": {
+                                    "type": "string",
+                                    "minLength": 1
+                                }
+                            },
+                            "required": [
+                                "qty",
+                                "sku_id"
+                            ],
+                            "additionalProperties": false
+                        }
+                    }
+                },
+                "required": [
+                    "Product_id",
+                    "Style_number",
+                    "sub"
+                ],
+                "additionalProperties": false
+            }
+        }
+    },
+    "required": [
+        "products"
+    ],
+    "additionalProperties": false
+}

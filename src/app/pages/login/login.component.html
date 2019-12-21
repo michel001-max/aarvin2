@@ -1,0 +1,83 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>customer's login</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="'/home/one'">Home</a></li>
+                        <li class="breadcrumb-item active" >login</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!-- section start -->
+<section class="login-page section-b-space">
+    <div class="container">
+        <div class="row">
+			
+		<div class="col-lg-12">
+			<div class="theme-card ">
+				<h3>Login</h3>
+				<div class="infinite-scrolling" style="display:none;">
+					<img src="assets/images/loader.gif">
+				</div>
+				<form class="theme-form">
+					<div class="form-group error_msg">
+						<span style='display:none;' class='email_invalid'>Not a valid email address</span>
+						<span style='display:none;' class='password_failed'>Please check if password is correct</span>
+						<span style='display:none;' class='invalid_request'>Request is not valid</span>
+					</div>
+					<div class="form-group success_msg">
+						<span style='display:none;' class='email_valid'>Correct Email address please enter password</span>
+						<span style='display:none;' class='password_valid'>Password is correct</span>
+						
+					</div>
+					<div class="form-group login_msg">
+						<span style='display:none;' class='login_success'>Login Success</span>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control text_field" id="email" placeholder="Email" required="">
+					</div>
+					<div style="display:none;" class="form-group second_password">
+						<input type="password" class="form-control text_field" id="password" placeholder="Enter your password" required="">
+					</div>
+					<div style="display:none;" class="form-group third_accountid">
+						<input type="text" class="form-control text_field" id="account_id" placeholder="Enter your AccountId" required="">
+					</div>
+					<button class="btn btn-solid conemail" (click)="confirmEmailA()">Confirm Email</button>
+					<button style="display:none;" (click)="getLoginFormValues()" class="btn btn-solid loginbtn">Login</button>
+					<div class="form-group">
+						<a style="margin-top:10px;" href='{{user_url}}/pages/forgetpassword' class="forgot_pass"><strong>Forgot Password?</strong></a>
+					</div>
+				</form>
+                </div>
+            </div>
+			
+        </div>
+    </div>
+</section>
+
+<style>
+.error_msg{
+	color:red;
+	text-align:center;
+}
+.success_msg{
+	color:green;
+	text-align:center;
+}
+.login_msg{
+	color:green;
+	text-align:center;
+}
+</style>
+<!--Section ends-->

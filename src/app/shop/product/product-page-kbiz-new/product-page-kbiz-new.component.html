@@ -1,0 +1,70 @@
+<div class="col-xl-3 colnew col-md-6 col-grid-box httpdata_classes" *ngFor = "let data of httpdata">
+	<div class="product-box 66" *ngIf="tags.length == 0">
+	
+		<div class="custom_api_listing_img">
+			<div class="product-detail" *ngFor = "let dataimg of data.Images; let i = index">
+				<div *ngIf="(i == 0)" class="img-wrapper" >	
+					<div class="front">
+						<a href="{{user_url}}/product/{{data.product_id}}"><img src="{{dataimg}}" class="img-fluid" alt=""></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="product-detail custom_api_listing" >
+		
+			<div class="custom_api_products">
+				<a href="{{user_url}}/product/{{data.product_id}}" ><h6>{{data.web_title}}</h6></a>
+			</div>
+			
+			<h4 class="{{data.price}}">{{curr_symbol}}{{data.price}} 
+			  <del><span class="money">{{curr_symbol}}{{data.retail_price}}</span></del>  
+			</h4>
+			
+			<div *ngFor = "let data_colors of data.total_colors">
+				  <span [class]="data_colors.color.replace('/', '_').replace(' ','_').replace('&','_').replace('_ ','_').replace('/', '_').replace('&','').replace('/', '_').replace('__', '_').replace(' ','_').replace('.','_') | lowercase " ></span>
+			</div>
+			
+			<ul class="color-variant">
+			  <li [class]="data_colors.color.replace('/', '_').replace(' ','_').replace('&','_').replace('_ ','_').replace('/', '_').replace('&','').replace('/', '_').replace('__', '_').replace(' ','_').replace('.','_') | lowercase " (click)="changeVariantImage(variant.images)" *ngFor = "let data_colors of data.total_colors"></li>
+			</ul>
+			
+		</div>
+		  
+	</div>
+</div>
+ <div class="col-xl-3 colnew col-md-6 col-grid-box pooja" *ngFor = "let data of tags">
+	<div class="product-box 66" *ngIf="tags.length > 0">
+	
+		<div class="custom_api_listing_img">
+			<div class="product-detail" *ngFor = "let dataimg of data.Images; let i = index">
+				<div *ngIf="(i == 0)" class="img-wrapper" >	
+					<div class="front">
+						<a href="{{user_url}}/product/{{data.product_id}}"><img src="{{dataimg}}" class="img-fluid" alt=""></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="product-detail custom_api_listing" >
+			
+			<div class="custom_api_products">
+				<a href="{{user_url}}/product/{{data.product_id}}" ><h6>{{data.web_title}}</h6></a>
+			</div>
+			
+			<h4 class="{{data.price}}">{{curr_symbol}}{{data.price}} 
+			  <del><span class="money">{{curr_symbol}}{{data.retail_price}}</span></del>  
+			</h4>
+			
+			<div *ngFor = "let data_colors of data.total_colors">
+				  <span [class]="data_colors.color.replace('/', '_').replace(' ','_').replace('&','_').replace('_ ','_').replace('/', '_').replace('&','').replace('/', '_').replace('__', '_').replace(' ','_').replace('.','_') | lowercase " ></span>
+			</div>
+			
+			<ul class="color-variant">
+			  <li [class]="data_colors.color.replace('/', '_').replace(' ','_').replace('&','_').replace('_ ','_').replace('/', '_').replace('&','').replace('/', '_').replace('__', '_').replace(' ','_').replace('.','_') | lowercase " (click)="changeVariantImage(variant.images)" *ngFor = "let data_colors of data.total_colors"></li>
+			</ul>
+			
+		</div>
+		  
+	</div>
+</div>

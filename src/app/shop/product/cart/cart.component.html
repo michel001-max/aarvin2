@@ -1,0 +1,126 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="page-title">
+          <h2>cart</h2>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <nav aria-label="breadcrumb" class="theme-breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="'/'">Home</a></li>
+            <li class="breadcrumb-item active">cart</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="cart-section 111 section-b-space">
+	<div class="container">
+		<div class="col-sm-12 empty-cart-cls text-center" *ngIf="!shoppingCartItems.length">
+		  <img src="assets/images/icon-empty-cart.png" class="img-fluid mb-4">
+		  <h3><strong>Your Cart is Empty</strong></h3>
+		  <h4>Add something to make me happy :)</h4>
+		</div>
+		
+		<div class="row shoppingCartItems.length" *ngIf='shoppingCartItems.length'>
+			<div class="col-sm-12">
+				<table class="table cart-table table-responsive-xs">
+					<thead>
+						<tr class="table-head">
+							<th scope="col">Image</th>
+							<th scope="col">Product name</th>
+							<th scope="col">QTY</th>
+							<th scope="col">Price</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr *ngFor="let item of shoppingCartItems"> 
+							<td>
+								<a href="{{user_url}}/product/{{item.prd_id}}">
+									<img [src]="item.image" alt="">
+								</a>
+							</td>
+							<td>
+								<a href="{{user_url}}/product/{{item.prd_id}}"><strong>{{ item.pro_title }}</strong></a>
+								<div class="qty-box">
+									<div class="input-group" *ngFor="let variations_get of item.products">
+										<div class="input-group" *ngFor="let variations of variations_get">
+											<div *ngIf='variations.prd_id==item.prd_id'>
+												<div class="input-group" class="vari_colors"><strong >{{variations.variant_sel}} : </strong>
+													<span *ngFor="let size_var of variations.size_n let c=index">
+													
+														<span *ngIf='size_var.color == variations.variant_sel'><span *ngIf="(c == 0)"></span> {{size_var.n_size}} [{{size_var.qty}}],  </span>
+														
+													</span>
+												</div>
+												<div class="margin-top"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</td>
+							<td>
+								<div class="qty-box">
+									<div class="input-group" *ngFor="let variations_get of item.products">
+										<div class="input-group" *ngFor="let variations of variations_get">
+											<div *ngIf='variations.prd_id==item.prd_id'>
+												<div class="input-group cstm_qty">[{{variations.custom_quantity}}]</div>
+												<div class="margin-top"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</td>
+							<td>
+								<div class="" *ngFor="let variations_get of item.products">
+									<span>{{curr_symbol}}{{item.total_price}}</span>
+								</div>
+							</td>
+							<td>
+								<a [routerLink]="" (click)="removeItemCustom(item.prd_id)" class="icon">
+									<i class="ti-close"></i>
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td></td><td>Total Price: {{curr_symbol}}{{getTotalCartPrice | number : fractionSize}}</td><td></td><td></td>
+						</tr>
+						<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>
+							<div class="text-right">
+								<div class="row"  *ngIf="showMsg"> 
+									<div class="col-xs-12">
+										<p class="alert alert-success">
+										<strong>Your Order Details Saved Successfully!!</strong>
+
+										</p>
+									</div>
+								</div>
+								
+								<button class="btn-solid btn" (click)="checkorder()" >
+								<!--<a href="vimvigr/pages/order-success"> Complete Order </a>-->
+								 Complete Order
+								</button>
+									
+							</div>
+							</td>
+						</tr>
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+		
+	</div>
+</section>

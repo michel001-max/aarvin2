@@ -1,0 +1,13 @@
+<!-- brand filter start -->
+<div class="collection-collapse-block open">
+  <h3 class="collapse-block-title">Fabric</h3>
+  <div class="collection-collapse-block-content">
+    <div class="collection-brand-filter">
+      <div class="custom-control custom-checkbox collection-filter-checkbox" *ngFor="let filter of fabricFilters">
+        <span *ngIf='filter_fabric==filter.brand'><span class="tick_mark">&#10003;</span></span><input type="checkbox" class="custom-control-input" [value]="filter.brand" (click)=checkedFilter($event) id="{{filter.brand}}">
+        <label class="custom-control-label" for="{{filter.brand}}">{{filter.brand}}</label>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,299 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="page-title">
+          <h2>product</h2>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <nav aria-label="breadcrumb" class="theme-breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="'/home/one'">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">product</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- breadcrumb End -->
+<!-- section start -->
+<section class="section-b-space">
+  <div class="collection-wrapper">
+    <div class="container productpage">
+      <div class="row">        
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="filter-main-btn mb-2">
+                  <span class="filter-btn" (click)="mobileSidebar()"><i class="fa fa-bars" aria-hidden="true"></i> sidebar</span>
+                </div>
+              </div>
+            </div>
+			
+			<p style="display:none;" class='error_msg_new'>All fields can't be empty</p>
+			
+            
+			<div class="productdiv" *ngFor="let product_details of product.custom_attributes; let i=index">
+
+				<div class="row" >
+					<div class=" col-lg-1">	
+					
+						<div *ngFor="let rec_size of product_details.size let im=index">
+							<div *ngIf="(rec_size.image!='')">
+								<div *ngIf="(im == 0)" class="front">
+									<a><img class="clsimg" src="{{ rec_size.image }}" class="img-fluid" alt=""></a>
+								</div>
+							</div>
+						</div>
+					
+						
+					</div>
+					
+					<div class="col-lg-3 rtl-text  ">
+						<h4 *ngIf="(i == 0)"><strong>{{product.web_title}}</strong><br/></h4> 
+
+						<h5><strong>Color:</strong>{{product_details.color}}</h5><br/>
+						<!--<h5 *ngFor="let rec_size of product_details.size"><strong>SKU:</strong >{{rec_size.date_type}}</h5><br/>-->
+							<!--<h5><strong>Category:</strong>{{product.category}} </h5>
+							<h5><strong>Style Number:</strong>{{ats_records.style_number}} </h5>
+							<h5><strong>Warehouse:</strong>{{ats_records.warehouse}} </h5>-->
+					</div>
+					
+					
+					
+					<div class="col-lg-6 rtl-text  ">
+						
+						<table>
+							<tr class="vari_tr">
+								<td><strong>Size</strong></td>
+								<td *ngFor="let rec_size of product_details.size">
+									<div class="rec_size">
+										<span>{{ rec_size.size }}</span>
+									</div>
+								</td>
+							</tr>
+							<tr class="vari_tr quantity_cls">  
+								
+								<td><strong>Qty</strong></td>
+								<td *ngFor="let rec_size of product_details.size let m=index">
+									<div class="rec_size">
+										<span *ngIf="(rec_size.imm_qty == 0)"><input disabled class="all_qty txt_qty_text cstim_txtq alln_{{m}}{{i+1}}" id="{{m}}{{i+1}}" type="number" name="text_qty[]" value="" /></span>
+										<span *ngIf="(rec_size.imm_qty > 0)"><input class="all_qty txt_qty_text cstim_txtq alln_{{m}}{{i+1}}" id="{{m}}{{i+1}}" type="number" name="text_qty[]" value="{{rec_size.quantity}}" /></span>  
+										<span><input class="color_size coln_{{m}}{{i+1}}" type="hidden" name="text_qty" value="{{product_details.color}}" /></span>
+										<span><input class="color_size sizen_{{m}}{{i+1}}" type="hidden" name="text_qty" value="{{ rec_size.size }}" /></span>
+										<span><input class="cs_price cs_price_{{m}}{{i+1}}" type="hidden" name="text_qty" value="{{rec_size.price}}" /></span>
+										<input class="cs_img cs_img_{{m}}{{i+1}}" type="hidden" name="text_qty" value="{{rec_size.image}}" />
+										<input class="cs_img cs_sku_{{m}}{{i+1}}" type="hidden" name="text_qty" value="{{rec_size.date_type}}" />
+										<input class="cs_img cs_style_{{m}}{{i+1}}" type="hidden" name="text_qty" value="{{rec_size.style_number}}" />
+										<input class="cs_img cs_immqty_{{m}}{{i+1}}" type="hidden" name="text_qty" value="{{rec_size.size}}" />
+									</div>
+								</td> 
+							</tr>
+							
+							
+							
+							<tr> 
+
+								<td><strong>
+								Immed
+								</strong></td>
+
+
+								<td *ngFor="let ats_records of product_details.size">								
+									<div class="align_center imm_qty" *ngIf="(ats_records.imm_qty == 0)">
+										<p>Out Of<br> Stock</p>
+									</div>
+									<div class="align_center imm_qty" *ngIf="(ats_records.imm_qty > 0)">
+										{{ats_records.imm_qty}}
+									</div>
+								</td>
+							</tr>
+							
+							<tr> 
+								<td>
+									<div class="chk_te" *ngFor="let ats_records of product_details.size; let c=index">
+									<div class="immed-qty" *ngIf="( c == 0 )">
+										<div *ngIf="(ats_records.type=='PO')">{{ats_records.date_due}}</div>
+									</div>
+									</div>
+								</td>
+								<td *ngFor="let ats_records of product_details.size">
+									<div class="align_center" *ngIf="(ats_records.type=='PO')">
+										{{ats_records.qty}}
+									</div>
+								</td>
+							</tr>
+							
+							<!--<tr>
+								<td class="" *ngFor="let ats_records of product_details.size">
+									{{ats_records.qty}}
+								</td>
+							</tr>-->
+						</table>
+					</div>
+					
+					<div class="col-lg-2 rtl-text  ">
+						<table>
+							<tr>
+								<td><strong>Price:</strong></td>
+							</tr>
+							<tr>
+								<td><span class="money_regular">{{curr_symbol}}{{product.price}}</span>
+								<span class="money_prdo">{{curr_symbol}}{{product.retail_price}}</span></td>
+							</tr>
+						</table>
+					</div>
+					
+				</div>
+			</div>
+			
+			<div class="">
+				<table>
+					<tr>
+						<a [routerLink]="" (click)="addToCart(product, product.product_id,product.web_title)" class="btn btn-solid add_to_cartbtn">add to cart</a>
+					</tr>
+				</table>
+				<div class="infinite-scrolling" style="display:none;">
+					<img src="assets/images/loader.gif">
+				</div>
+			</div>
+          </div>
+          <section class="tab-product m-0">
+            <div class="row">
+              <div class="col-sm-12 col-lg-12">
+                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="top-home-tab" data-toggle="tab" href="#top-home" role="tab" aria-selected="true">
+                <i class="icofont icofont-ui-home"></i>Description</a>
+                    <div class="material-border"></div>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="profile-top-tab" data-toggle="tab" href="#top-profile" role="tab" aria-selected="false"><i class="icofont icofont-man-in-glasses"></i>Details</a>
+                    <div class="material-border"></div>
+                  </li>
+                  <!--<li class="nav-item">
+                    <a class="nav-link" id="contact-top-tab" data-toggle="tab" href="#top-contact" role="tab" aria-selected="false">
+                    <i class="icofont icofont-contacts"></i>Video</a>
+                    <div class="material-border"></div>
+                  </li>-->
+                  <!--<li class="nav-item">
+                    <a class="nav-link" id="review-top-tab" data-toggle="tab" href="#top-review" role="tab" aria-selected="false">
+                        <i class="icofont icofont-contacts"></i>Write Reviews</a>
+                    <div class="material-border"></div>
+                  </li>-->
+                </ul>
+                <div class="tab-content nav-material" id="top-tabContent">
+                  <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
+                    <p>{{product.description}}</p>
+                  </div>
+                  <div class="tab-pane fade" id="top-profile" role="tabpanel" aria-labelledby="profile-top-tab">
+                    <p>{{product.shortDetails}}</p>
+                    <div class="single-product-tables">
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td *ngIf="product.style_number">Style Number</td>
+                            <td *ngIf="product.style_number">{{product.style_number}}</td>
+                          </tr>
+                          <tr>
+                            <td *ngIf="product.category">Category</td>
+                            <td *ngIf="product.category">{{product.category}}</td>
+                          </tr>
+                          <tr>
+                            <td *ngIf="product.group">Group</td>
+                            <td *ngIf="product.group">{{product.group}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td *ngIf="product.origin">Origin</td>
+                            <td *ngIf="product.origin">{{product.origin}}</td>
+                          </tr>
+                          <tr>
+                            <td *ngIf="product.weight">Weight</td>
+                            <td *ngIf="product.weight">{{product.weight}}</td>
+                          </tr>
+						  <tr>
+                            <td *ngIf="product.tariff_code">Tariff Code</td>
+                            <td *ngIf="product.tariff_code">{{product.tariff_code}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!--<div class="tab-pane fade" id="top-contact" role="tabpanel" aria-labelledby="contact-top-tab">
+                    <div class="mt-3 text-center">
+                      <iframe width="560" height="315" src="https://www.youtube.com/embed/BUWzX78Ye_8" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                  </div>-->
+                  <!--<div class="tab-pane fade" id="top-review" role="tabpanel" aria-labelledby="review-top-tab">
+                    <form class="theme-form">
+                      <div class="form-row">
+                        <div class="col-md-12 ">
+                          <div class="media">
+                            <label>Rating</label>
+                            <div class="media-body ml-3">
+                              <div class="rating three-star">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="name">Name</label>
+                          <input type="text" class="form-control" id="name" placeholder="Enter Your name" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="email">Email</label>
+                          <input type="text" class="form-control" id="email" placeholder="Email" required>
+                        </div>
+                        <div class="col-md-12">
+                          <label for="review">Review Title</label>
+                          <input type="text" class="form-control" id="review" placeholder="Enter your Review Subjects" required>
+                        </div>
+                        <div class="col-md-12">
+                          <label for="review">Review Title</label>
+                          <textarea class="form-control" placeholder="Wrire Your Testimonial Here" id="exampleFormControlTextarea1" rows="6"></textarea>
+                        </div>
+                        <div class="col-md-12">
+                          <button class="btn btn-solid" type="submit">Submit YOur Review</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>-->
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Section ends -->
+<!-- Modal size chart -->
+<div class="modal fade" id="sizemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ product.web_title }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="assets/images/size-chart.jpg" alt="" class="img-fluid">
+       </div>
+      </div>
+    </div>
+  </div>

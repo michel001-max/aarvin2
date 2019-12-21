@@ -1,0 +1,87 @@
+<!-- thank-you section start -->
+<section class="section-b-space light-layout">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="success-text">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    <h2>thank you</h2>
+                    <p>{{saveorder.message}}</p>
+                    <p>Order ID: {{saveorder.orderid}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section ends -->
+<!-- order-detail section start -->
+<section class="section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="product-order">
+                    <h3>your order details</h3>
+
+                   <div class="row product-order-detail" *ngFor="let product_details of saveorder.cartdetails.products">
+                        <div class="col-3">
+                            <img src="assets/images/pro3/1.jpg" alt="" class="img-fluid">
+                        </div>
+                        <div class="col-3 order_detail">
+                            <div>
+                                <h4>product name</h4>
+                                <h5>{{product_details.pro_title}}</h5>
+                            </div>
+                        </div>
+                        <div class="col-3 order_detail" >
+                            <div >
+                                <h4>Quantity</h4>
+                                <h5 *ngFor="let sub_details of product_details.sub">{{sub_details.n_size}}[{{sub_details.qty}}]</h5>
+                            </div>
+                        </div>
+                        <div class="col-3 order_detail">
+                            <div >
+                                <h4>price</h4>
+                               
+								<h5 >
+								<p >
+								${{product_details.price | number : fractionSize}}
+								</p>  
+								</h5>
+
+								
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="final-total">
+                        <h3>total <span>${{getTotalCartPrice | number : fractionSize}}</span></h3>   
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row order-success-sec">
+                    <div class="col-sm-6">
+                        <h4>summery</h4>
+                        <ul class="order-detail">
+                            <li>order ID: {{saveorder.orderid}}</li>
+                            <li>Order Date: {{saveorder.orderdate}}</li>
+                            <li>Order Total: ${{getTotalCartPrice}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4>shipping address</h4>
+                        <ul class="order-detail">
+                            <li>{{saveorder.shippingaddres.address_1}}</li>
+                            <li>{{saveorder.shippingaddres.address_2}}, {{saveorder.shippingaddres.city}}</li>
+                            <li>{{saveorder.shippingaddres.state}}, {{saveorder.shippingaddres.country}}, {{saveorder.shippingaddres.postal_code}}</li>
+                            <li>Contact No. {{saveorder.shippingaddres.phone}}</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Section ends -->
